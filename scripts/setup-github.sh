@@ -40,12 +40,21 @@ if git remote get-url origin >/dev/null 2>&1; then
 fi
 
 echo "📦 リポジトリ作成: ${REPO_NAME} (${VISIBILITY})"
-gh repo create "$REPO_NAME" \
-  --"$VISIBILITY" \
-  --source=. \
-  --remote=origin \
-  --description="BLOOM Me — 花の精霊 AI 変身アプリ（スマホファースト）" \
-  --push
+if gh repo view "${REPO_NAME}" >/dev/null 2>&1; then
+  echo "ℹ️  リポジトリ ${REPO_NAME} は既に存在します。remote のみ設定して push します。"
+  git remote add origin "https://github.com/$(gh api user -q .login)/${REPO_NAME}.git" 2>/dev/null \
+    || git remote set-url origin "https://github.com/$(gh api user -q .login)/${REPO_NAME}.git"
+  git -c http.postBuffer=524288000 push -u origin main
+else
+  gh repo create "$REPO_NAME" \
+    --"$VISIBILITY" \
+    --source=. \
+    --remote=origin \
+    --description="BLOOM Me — 花の精霊 AI 変身アプリ（スマホファースト）" \
+    --push
+  # 大きいアセット（BGM/mp4）で HTTP 400 になる場合の保険
+  git -c http.postBuffer=524288000 push -u origin main 2>/dev/null || true
+fi
 
 echo ""
 echo "✅ 完了!"
