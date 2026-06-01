@@ -54,11 +54,23 @@ http://localhost:3000
 
 ## GitHub（初回）
 
+### CLI（推奨）
+
 ```bash
-# GitHub で bloom-me リポジトリを作成後
-git remote add origin https://github.com/YOUR_USER/bloom-me.git
-git push -u origin main
+gh auth login          # 初回のみ
+./scripts/setup-github.sh
+# 非公開: ./scripts/setup-github.sh --private
 ```
+
+### 手動
+
+1. https://github.com/new で `bloom-me` を作成（README は追加しない）
+2. ```bash
+   git remote add origin https://github.com/YOUR_USER/bloom-me.git
+   git push -u origin main
+   ```
+
+詳細: Obsidian `05_projects/BLOOM Me/実装メモ/2026-06-02_Phase3_GitHub.md`
 
 ## フォルダ
 
