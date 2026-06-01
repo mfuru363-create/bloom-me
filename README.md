@@ -1,71 +1,79 @@
 # BLOOM Me
 
-タイムスリップ変身体験 Web アプリ（スマホファースト・PC 対応）
+花の精霊に変身する AI 体験アプリ（スマホファースト・PC 対応）
+
+> AI Studio エクスポート（`copy-of-bloom-me２_-ai-flower-spirit-generator`）を Next.js + Vercel 向けに移植。
+
+## 機能
+
+1. 写真をアップロード
+2. 国花10種から花を選択
+3. 任意のプロンプトを入力
+4. **Bloom Your Character** — AI がキャラ設定＋アニメ風画像を生成
 
 ## 技術スタック
 
-- **Next.js** (App Router)
-- **Tailwind CSS**
-- **Vercel** デプロイ想定
-- **Gemini API**（サーバー側 `/api/chat` 経由）
+- Next.js 16 (App Router) + TypeScript + Tailwind
+- `@google/genai`（サーバー側のみ）
+- Vercel デプロイ想定
+- Firebase **不使用**
 
-Firebase は使用しません。
-
-## 初回セットアップ
+## セットアップ
 
 ```bash
 cd bloom-me
 npm install
 cp .env.example .env.local
-# .env.local に GEMINI_API_KEY を設定
+```
+
+`.env.local` に以下を設定:
+
+```
+GEMINI_API_KEY=あなたのキー
+```
+
+```bash
 npm run dev
 ```
 
-ブラウザで http://localhost:3000 を開く。
+http://localhost:3000
 
-## 環境変数
+## API
 
-| 変数 | 必須 | 説明 |
-|------|:----:|------|
-| `GEMINI_API_KEY` | ✅ | Google AI Studio の API キー |
-| `GEMINI_MODEL` | — | 既定: `gemini-2.0-flash` |
+| エンドポイント | 用途 |
+|----------------|------|
+| `POST /api/generate-character` | キャラ名前・説明文 |
+| `POST /api/generate-image` | 画像変身（base64 返却） |
 
 ## デプロイ（Vercel）
 
-1. GitHub にリポジトリを push
-2. [Vercel](https://vercel.com) → **Add New Project** → リポジトリを Import
-3. Environment Variables に `GEMINI_API_KEY` を追加
+1. GitHub に push（下記）
+2. [vercel.com](https://vercel.com) → Import Repository
+3. Environment Variables: `GEMINI_API_KEY`
 4. Deploy
 
-## フォルダ構成
-
-```
-public/
-  bgm/           BGM（main-theme.mp3 など）
-  images/        背景画像（female / male）
-  video/         動画アセット
-src/
-  app/api/chat/  Gemini プロキシ
-  components/    HomeScreen, ChatScreen
-  lib/config.ts  テーマ・アセットパス
-```
-
-## 譲渡時メモ
-
-- GitHub リポジトリオーナーを依頼者へ移管
-- Vercel プロジェクトを依頼者アカウントへ移管
-- `GEMINI_API_KEY` を依頼者名義のキーに差し替え
-
-詳細ドキュメント: Obsidian `05_projects/BLOOM Me/`
-
-## 開発
+## GitHub（初回）
 
 ```bash
-npm run dev      # 開発サーバー
-npm run build    # 本番ビルド
-npm run lint     # ESLint
+# GitHub で bloom-me リポジトリを作成後
+git remote add origin https://github.com/YOUR_USER/bloom-me.git
+git push -u origin main
 ```
 
-## ライセンス
+## フォルダ
 
-Private — 滝澤さん依頼プロジェクト
+```
+src/components/BloomMeApp.tsx   メイン UI
+src/lib/flowers.ts              国花10種
+src/lib/gemini-server.ts        Gemini 呼び出し
+docs/aistudio-export-reference/ 元 AI Studio コード（参照用）
+public/                         BGM・画像アセット
+```
+
+## 譲渡（滝澤さん向け）
+
+- リポジトリオーナー移管
+- Vercel プロジェクト移管
+- `GEMINI_API_KEY` を依頼者名義に差し替え
+
+詳細: Obsidian `05_projects/BLOOM Me/`

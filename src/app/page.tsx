@@ -1,5 +1,5 @@
-import { AppShell } from "@/components/AppShell";
+import { BloomMeApp } from "@/components/BloomMeApp";
 
 export default function Home() {
-  return <AppShell />;
+  return <BloomMeApp />;
 }
