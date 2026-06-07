@@ -1,4 +1,4 @@
-import { GoogleGenAI, SubjectReferenceImage, SubjectReferenceType } from "@google/genai";
+import { GoogleGenAI, Modality } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
 
 interface GenerationParams {
@@ -15,15 +15,19 @@ interface GenerationParams {
 
 function buildPrompt(params: GenerationParams): string {
   const personalityString = params.personality.join(", ");
+  const styleHint =
+    params.quality === "high"
+      ? "ultra-realistic photography, 8k, historically accurate, cinematic"
+      : "beautiful fantasy illustration, artistic";
   return `
-A "Flower Spirit" character from a specific historical era.
+Transform${params.userImage ? " the person in the provided photo into" : ""} a "Flower Spirit" character from a specific historical era.
 - National Spirit: ${params.flower} (${params.country})
 - Hanakotoba (Spirit's Essence): "${params.hanakotoba}"
 - Character Personality: ${personalityString}
 - Clothing & Outfit: ${params.outfit}
 - Background Environment: ${params.background}
 - Lighting & Color: ${params.color_tone}
-- Style: ${params.quality === "high" ? "ultra-realistic photography, 8k, historically accurate, cinematic" : "beautiful fantasy illustration, artistic"}
+- Style: ${styleHint}
 - No nudity or inappropriate content. Portrait or full-body composition.
   `.trim();
 }
@@ -43,41 +47,36 @@ export async function POST(request: NextRequest) {
     }
 
     const ai = new GoogleGenAI({ apiKey });
+
+    const standardModel = process.env.GEMINI_IMAGE_MODEL ?? "gemini-2.5-flash-image";
+    const highModel = process.env.GEMINI_IMAGE_QUALITY_MODEL ?? "gemini-3-pro-image-preview";
+    const model = quality === "high" ? highModel : standardModel;
+
     const prompt = buildPrompt({ flower, country, hanakotoba, personality, outfit, background, color_tone, userImage, quality });
 
-    let imageBytes: string | undefined;
+    const parts: { text?: string; inlineData?: { data: string; mimeType: string } }[] = [];
 
     if (userImage) {
-      // 顔参照あり: editImage で人物変換
-      const subjectRef = new SubjectReferenceImage();
-      subjectRef.referenceImage = { imageBytes: userImage.data };
-      subjectRef.referenceId = 1;
-      subjectRef.config = { subjectType: SubjectReferenceType.SUBJECT_TYPE_PERSON };
+      parts.push({ inlineData: { data: userImage.data, mimeType: userImage.mimeType } });
+    }
+    parts.push({ text: prompt });
 
-      const editModel = process.env.GEMINI_EDIT_MODEL ?? "imagen-3.0-capability-001";
-      const response = await ai.models.editImage({
-        model: editModel,
-        prompt,
-        referenceImages: [subjectRef],
-        config: { numberOfImages: 1, aspectRatio: "1:1" },
-      });
-      imageBytes = response.generatedImages?.[0]?.image?.imageBytes;
-    } else {
-      // 顔参照なし: generateImages でテキスト→画像
-      const genModel = process.env.GEMINI_IMAGE_MODEL ?? "imagen-3.0-generate-002";
-      const response = await ai.models.generateImages({
-        model: genModel,
-        prompt,
-        config: { numberOfImages: 1, aspectRatio: "1:1" },
-      });
-      imageBytes = response.generatedImages?.[0]?.image?.imageBytes;
+    const response = await ai.models.generateContent({
+      model,
+      contents: { parts },
+      config: {
+        responseModalities: [Modality.IMAGE, Modality.TEXT],
+      },
+    });
+
+    const responseParts = response.candidates?.[0]?.content?.parts ?? [];
+    for (const part of responseParts) {
+      if (part.inlineData?.mimeType?.startsWith("image/") && part.inlineData.data) {
+        return NextResponse.json({ imageBase64: part.inlineData.data });
+      }
     }
 
-    if (!imageBytes) {
-      return NextResponse.json({ error: "AIから画像が返されませんでした" }, { status: 502 });
-    }
-
-    return NextResponse.json({ imageBase64: imageBytes });
+    return NextResponse.json({ error: "AIから画像が返されませんでした" }, { status: 502 });
   } catch (error) {
     const message = error instanceof Error ? error.message : "画像生成に失敗しました";
     return NextResponse.json({ error: message }, { status: 502 });
