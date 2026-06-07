@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateCharacterProfile } from "@/lib/gemini-server";
-import type { Flower } from "@/types/flower";
+import type { LegacyFlower as Flower } from "@/types/flower";
 
 export async function POST(request: NextRequest) {
   try {

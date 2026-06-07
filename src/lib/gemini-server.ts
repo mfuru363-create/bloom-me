@@ -1,5 +1,5 @@
 import { GoogleGenAI, Modality, Type } from "@google/genai";
-import type { Flower } from "@/types/flower";
+import type { LegacyFlower as Flower } from "@/types/flower";
 
 function getClient() {
   const apiKey = process.env.GEMINI_API_KEY;
