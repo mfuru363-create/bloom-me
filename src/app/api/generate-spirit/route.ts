@@ -68,8 +68,8 @@ export async function POST(request: NextRequest) {
 
     const ai = new GoogleGenAI({ apiKey });
     const model = quality === "high"
-      ? (process.env.GEMINI_HIGH_QUALITY_MODEL ?? process.env.GEMINI_IMAGE_MODEL ?? "gemini-2.5-flash")
-      : (process.env.GEMINI_IMAGE_MODEL ?? "gemini-2.5-flash");
+      ? (process.env.GEMINI_HIGH_QUALITY_MODEL ?? process.env.GEMINI_IMAGE_MODEL ?? "gemini-2.0-flash-preview-image-generation")
+      : (process.env.GEMINI_IMAGE_MODEL ?? "gemini-2.0-flash-preview-image-generation");
 
     const prompt = buildPrompt({ flower, country, hanakotoba, personality, outfit, background, color_tone, userImage, quality });
 
