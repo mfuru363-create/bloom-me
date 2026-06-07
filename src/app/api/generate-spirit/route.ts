@@ -1,4 +1,4 @@
-import { GoogleGenAI, Modality } from "@google/genai";
+import { GoogleGenAI, SubjectReferenceImage, SubjectReferenceType } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
 
 interface GenerationParams {
@@ -15,40 +15,16 @@ interface GenerationParams {
 
 function buildPrompt(params: GenerationParams): string {
   const personalityString = params.personality.join(", ");
-  const userImageInstruction = params.userImage
-    ? `- User Face Reference: Provided. Please subtly map the facial structure and features of the person in the image onto the character. Maintain the historical look while making the character feel like a realistic reincarnation of the person.`
-    : `- Original Character: Generate a unique, period-accurate face that reflects the character's background.`;
-
-  const styleInstruction =
-    params.quality === "high"
-      ? "ultra-realistic photography, high-end cinema shot, 8k resolution, authentic historical textures (silk, velvet, stone, wood), shallow depth of field, masterful lighting, historically accurate in every detail"
-      : "fantasy art style";
-
   return `
-You are a world-class historical image generator.
-Task: Create a highly detailed image of a "Flower Spirit" who has taken human form during a specific historical era.
-
-[HISTORICAL SETTING & CONTEXT]
+A "Flower Spirit" character from a specific historical era.
 - National Spirit: ${params.flower} (${params.country})
-- Historical Era Context: The golden age or significant historical period associated with ${params.country}.
 - Hanakotoba (Spirit's Essence): "${params.hanakotoba}"
 - Character Personality: ${personalityString}
-
-[VISUAL DETAILS]
-- Clothing & Outfit: ${params.outfit}. Focus on authentic materials and period-appropriate tailoring.
-- Background Environment: ${params.background}. Ensure architecture and surroundings match the historical era precisely.
-- Lighting & Color: ${params.color_tone}. Use lighting to create a cinematic, dramatic atmosphere.
-
-[STYLE SPECIFICATION]
-- Primary Style: ${styleInstruction}
-${userImageInstruction}
-
-[CONSTRAINTS]
-- For high quality: The image must look like a real photograph from a film set.
-- For standard: Maintain a beautiful, artistic fantasy illustration style.
-- The character should embody the flower's traits through their attire and demeanor.
-- No nudity or inappropriate content.
-- Portrait or full-body composition based on the scene's requirement for cinematic impact.
+- Clothing & Outfit: ${params.outfit}
+- Background Environment: ${params.background}
+- Lighting & Color: ${params.color_tone}
+- Style: ${params.quality === "high" ? "ultra-realistic photography, 8k, historically accurate, cinematic" : "beautiful fantasy illustration, artistic"}
+- No nudity or inappropriate content. Portrait or full-body composition.
   `.trim();
 }
 
@@ -67,32 +43,41 @@ export async function POST(request: NextRequest) {
     }
 
     const ai = new GoogleGenAI({ apiKey });
-    const model = quality === "high"
-      ? (process.env.GEMINI_HIGH_QUALITY_MODEL ?? process.env.GEMINI_IMAGE_MODEL ?? "gemini-2.0-flash-exp")
-      : (process.env.GEMINI_IMAGE_MODEL ?? "gemini-2.0-flash-exp");
-
     const prompt = buildPrompt({ flower, country, hanakotoba, personality, outfit, background, color_tone, userImage, quality });
 
-    const contentParts: { text?: string; inlineData?: { mimeType: string; data: string } }[] = [];
+    let imageBytes: string | undefined;
+
     if (userImage) {
-      contentParts.push({ inlineData: { mimeType: userImage.mimeType, data: userImage.data } });
+      // 顔参照あり: editImage で人物変換
+      const subjectRef = new SubjectReferenceImage();
+      subjectRef.referenceImage = { imageBytes: userImage.data };
+      subjectRef.referenceId = 1;
+      subjectRef.config = { subjectType: SubjectReferenceType.SUBJECT_TYPE_PERSON };
+
+      const editModel = process.env.GEMINI_EDIT_MODEL ?? "imagen-3.0-capability-001";
+      const response = await ai.models.editImage({
+        model: editModel,
+        prompt,
+        referenceImages: [subjectRef],
+        config: { numberOfImages: 1, aspectRatio: "1:1" },
+      });
+      imageBytes = response.generatedImages?.[0]?.image?.imageBytes;
+    } else {
+      // 顔参照なし: generateImages でテキスト→画像
+      const genModel = process.env.GEMINI_IMAGE_MODEL ?? "imagen-3.0-generate-002";
+      const response = await ai.models.generateImages({
+        model: genModel,
+        prompt,
+        config: { numberOfImages: 1, aspectRatio: "1:1" },
+      });
+      imageBytes = response.generatedImages?.[0]?.image?.imageBytes;
     }
-    contentParts.push({ text: prompt });
 
-    const response = await ai.models.generateContent({
-      model,
-      contents: { parts: contentParts },
-      config: { responseModalities: [Modality.IMAGE, Modality.TEXT] },
-    });
-
-    const parts = response.candidates?.[0]?.content?.parts ?? [];
-    for (const part of parts) {
-      if (part.inlineData?.mimeType?.startsWith("image/") && part.inlineData.data) {
-        return NextResponse.json({ imageBase64: part.inlineData.data });
-      }
+    if (!imageBytes) {
+      return NextResponse.json({ error: "AIから画像が返されませんでした" }, { status: 502 });
     }
 
-    return NextResponse.json({ error: "AIから画像が返されませんでした" }, { status: 502 });
+    return NextResponse.json({ imageBase64: imageBytes });
   } catch (error) {
     const message = error instanceof Error ? error.message : "画像生成に失敗しました";
     return NextResponse.json({ error: message }, { status: 502 });
