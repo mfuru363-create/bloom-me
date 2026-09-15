@@ -5,7 +5,10 @@ export type Flower = {
   flower: string;
   hanakotoba: string;
   theme: string;
-  defaultOutfit: string;
+  outfits: {
+    female: string;
+    male: string;
+  };
 };
 
 // Legacy type (used by generate-character route)

@@ -1,12 +1,16 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { MAX_IMAGE_DIMENSION, resizeImageForUpload } from "@/lib/resize-image";
+import { THEME_UI } from "@/lib/config";
+import type { AppTheme } from "@/types/app";
 
 type ImageUploaderProps = {
   onImageUpload: (base64: string, mimeType: string) => void;
   onImageClear: () => void;
   disabled: boolean;
   uploadedImagePreview: string | null;
+  gender: AppTheme;
 };
 
 export function ImageUploader({
@@ -14,19 +18,26 @@ export function ImageUploader({
   onImageClear,
   disabled,
   uploadedImagePreview,
+  gender,
 }: ImageUploaderProps) {
+  const ui = THEME_UI[gender];
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [processError, setProcessError] = useState<string | null>(null);
 
-  const readFile = (file: File) => {
+  const readFile = async (file: File) => {
     if (!file.type.startsWith("image/")) return;
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const result = reader.result?.toString() ?? "";
-      const base64 = result.split(",")[1];
-      if (base64) onImageUpload(base64, file.type);
-    };
-    reader.readAsDataURL(file);
+    setIsProcessing(true);
+    setProcessError(null);
+    try {
+      const { base64, mimeType } = await resizeImageForUpload(file);
+      onImageUpload(base64, mimeType);
+    } catch {
+      setProcessError("画像の処理に失敗しました。別の写真をお試しください。");
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   if (uploadedImagePreview) {
@@ -50,6 +61,9 @@ export function ImageUploader({
             </button>
           </div>
         </div>
+        <p className="mt-2 text-xs text-gray-500">
+          送信時は長辺 {MAX_IMAGE_DIMENSION}px に自動圧縮されます
+        </p>
       </div>
     );
   }
@@ -59,12 +73,14 @@ export function ImageUploader({
       <div
         role="button"
         tabIndex={0}
-        onClick={() => !disabled && fileInputRef.current?.click()}
+        onClick={() => !disabled && !isProcessing && fileInputRef.current?.click()}
         onKeyDown={(e) => e.key === "Enter" && fileInputRef.current?.click()}
         onDrop={(e) => {
           e.preventDefault();
           setIsDragging(false);
-          if (!disabled && e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]);
+          if (!disabled && !isProcessing && e.dataTransfer.files[0]) {
+            void readFile(e.dataTransfer.files[0]);
+          }
         }}
         onDragOver={(e) => {
           e.preventDefault();
@@ -72,23 +88,36 @@ export function ImageUploader({
         }}
         onDragLeave={() => setIsDragging(false)}
         className={`flex min-h-44 flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 transition ${
-          disabled
-            ? "cursor-not-allowed border-gray-700 bg-gray-800/30 text-gray-600"
-            : "cursor-pointer border-gray-600 text-gray-400 hover:border-pink-400 hover:bg-gray-800/50"
-        } ${isDragging ? "border-pink-400 bg-gray-800/50 ring-4 ring-pink-500/20" : ""}`}
+          disabled || isProcessing
+            ? "cursor-not-allowed border-gray-300 bg-gray-50 text-gray-400"
+            : ui.uploader
+        } ${isDragging ? ui.uploaderDragging : ""}`}
       >
         <input
           ref={fileInputRef}
           type="file"
           accept="image/png,image/jpeg,image/webp"
           className="hidden"
-          disabled={disabled}
-          onChange={(e) => e.target.files?.[0] && readFile(e.target.files[0])}
+          disabled={disabled || isProcessing}
+          onChange={(e) => e.target.files?.[0] && void readFile(e.target.files[0])}
         />
-        <span className="mb-2 text-4xl">📷</span>
-        <p className="text-base font-semibold">タップして写真を選ぶ</p>
-        <p className="mt-1 text-sm">PNG / JPG / WEBP</p>
+        {isProcessing ? (
+          <>
+            <span className="mb-2 text-4xl animate-pulse">⏳</span>
+            <p className="text-base font-semibold">画像を圧縮中...</p>
+          </>
+        ) : (
+          <>
+            <span className="mb-2 text-4xl">📷</span>
+            <p className="text-base font-semibold">タップして写真を選ぶ</p>
+            <p className="mt-1 text-sm">PNG / JPG / WEBP</p>
+            <p className="mt-2 text-xs text-gray-400">
+              自動で長辺 {MAX_IMAGE_DIMENSION}px に圧縮されます
+            </p>
+          </>
+        )}
       </div>
+      {processError && <p className="mt-2 text-center text-sm text-red-600">{processError}</p>}
     </div>
   );
 }

@@ -98,7 +98,7 @@ export async function generateCharacterImageBytes(
       ],
     },
     config: {
-      responseModalities: [Modality.IMAGE, Modality.TEXT],
+      responseModalities: [Modality.IMAGE],
     },
   });
 

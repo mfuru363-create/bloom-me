@@ -1,0 +1,757 @@
+{
+  "repoRoot": "/Users/kogunriitari/dev/web/bloom-me",
+  "githubBase": "https://github.com/mfuru363-create/bloom-me/blob/main",
+  "obsidianCopy": "/Users/kogunriitari/Documents/Obsidian Vault/05_projects/02_BLOOM Me/テキスト一覧/ui-strings.csv",
+  "strings": [
+    {
+      "id": "home.tagline.line1",
+      "category": "home",
+      "file": "src/screens/HomeScreen.tsx",
+      "line": 28,
+      "context": "p tagline 1行目",
+      "text_current": "歴史の美しい時代から、",
+      "matchType": "literal",
+      "search": "歴史の美しい時代から、"
+    },
+    {
+      "id": "home.tagline.line2",
+      "category": "home",
+      "file": "src/screens/HomeScreen.tsx",
+      "line": 30,
+      "context": "p tagline 2行目",
+      "text_current": "花の精霊として生まれ変わろう",
+      "matchType": "literal",
+      "search": "花の精霊として生まれ変わろう"
+    },
+    {
+      "id": "home.gender_female",
+      "category": "home",
+      "file": "src/screens/HomeScreen.tsx",
+      "line": 42,
+      "context": "button 女性レーン",
+      "text_current": "女性の精霊",
+      "matchType": "literal",
+      "search": "女性の精霊"
+    },
+    {
+      "id": "home.gender_male",
+      "category": "home",
+      "file": "src/screens/HomeScreen.tsx",
+      "line": 49,
+      "context": "button 男性レーン",
+      "text_current": "男性の精霊",
+      "matchType": "literal",
+      "search": "男性の精霊"
+    },
+    {
+      "id": "home.high_quality_note",
+      "category": "home",
+      "file": "src/screens/HomeScreen.tsx",
+      "line": 39,
+      "context": "p footnote",
+      "text_current": "※ 高品質モードは1日1回まで利用できます",
+      "matchType": "literal",
+      "search": "※ 高品質モードは1日1回まで利用できます"
+    },
+    {
+      "id": "nav.back_to_home",
+      "category": "nav",
+      "file": "src/components/BloomMeApp.tsx",
+      "line": 23,
+      "context": "header button",
+      "text_current": "← トップへ",
+      "matchType": "literal",
+      "search": "← トップへ"
+    },
+    {
+      "id": "nav.footer_credit",
+      "category": "nav",
+      "file": "src/components/BloomMeApp.tsx",
+      "line": 40,
+      "context": "footer p",
+      "text_current": "Google Gemini で生成",
+      "matchType": "literal",
+      "search": "Google Gemini で生成"
+    },
+    {
+      "id": "gen.step1.title",
+      "category": "generator",
+      "file": "src/screens/GeneratorScreen.tsx",
+      "line": 120,
+      "context": "h2 step 1",
+      "text_current": "1. 国花を選ぶ",
+      "matchType": "literal",
+      "search": "1. 国花を選ぶ"
+    },
+    {
+      "id": "gen.step2.title",
+      "category": "generator",
+      "file": "src/screens/GeneratorScreen.tsx",
+      "line": 131,
+      "context": "h2 step 2",
+      "text_current": "2. 写真から変身",
+      "matchType": "literal",
+      "search": "2. 写真から変身"
+    },
+    {
+      "id": "gen.step2.optional",
+      "category": "generator",
+      "file": "src/screens/GeneratorScreen.tsx",
+      "line": 132,
+      "context": "span optional",
+      "text_current": "（任意）",
+      "matchType": "literal",
+      "search": "（任意）"
+    },
+    {
+      "id": "gen.step3.title",
+      "category": "generator",
+      "file": "src/screens/GeneratorScreen.tsx",
+      "line": 144,
+      "context": "h2 step 3",
+      "text_current": "3. 精霊をカスタマイズ",
+      "matchType": "literal",
+      "search": "3. 精霊をカスタマイズ"
+    },
+    {
+      "id": "gen.step4.title",
+      "category": "generator",
+      "file": "src/screens/GeneratorScreen.tsx",
+      "line": 157,
+      "context": "h2 step 4",
+      "text_current": "4. 完成した精霊",
+      "matchType": "literal",
+      "search": "4. 完成した精霊"
+    },
+    {
+      "id": "gen.error.fallback",
+      "category": "error",
+      "file": "src/screens/GeneratorScreen.tsx",
+      "line": 96,
+      "context": "throw fallback",
+      "text_current": "生成に失敗しました",
+      "matchType": "literal",
+      "search": "生成に失敗しました"
+    },
+    {
+      "id": "gen.error.unexpected",
+      "category": "error",
+      "file": "src/screens/GeneratorScreen.tsx",
+      "line": 102,
+      "context": "catch fallback",
+      "text_current": "予期しないエラーが発生しました",
+      "matchType": "literal",
+      "search": "予期しないエラーが発生しました"
+    },
+    {
+      "id": "form.default.personality",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 54,
+      "context": "useState default",
+      "text_current": "穏やか, 優雅",
+      "matchType": "literal",
+      "search": "穏やか, 優雅"
+    },
+    {
+      "id": "form.default.color_tone",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 57,
+      "context": "useState default",
+      "text_current": "温かく, やさしい",
+      "matchType": "literal",
+      "search": "温かく, やさしい"
+    },
+    {
+      "id": "form.quality.label",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 94,
+      "context": "label",
+      "text_current": "生成クオリティ",
+      "matchType": "literal",
+      "search": "生成クオリティ"
+    },
+    {
+      "id": "form.quality.standard",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 113,
+      "context": "button standard",
+      "text_current": "スタンダード",
+      "matchType": "literal",
+      "search": "スタンダード"
+    },
+    {
+      "id": "form.quality.high",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 113,
+      "context": "button high",
+      "text_current": "高品質（写実）",
+      "matchType": "literal",
+      "search": "高品質（写実）"
+    },
+    {
+      "id": "form.quality.standard_desc",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 120,
+      "context": "p description",
+      "text_current": "ファンタジー調のイラスト風（回数制限なし）",
+      "matchType": "literal",
+      "search": "ファンタジー調のイラスト風（回数制限なし）"
+    },
+    {
+      "id": "form.quality.high_desc",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 121,
+      "context": "p description",
+      "text_current": "高精細・写実的な仕上がり（1日1回まで）",
+      "matchType": "literal",
+      "search": "高精細・写実的な仕上がり（1日1回まで）"
+    },
+    {
+      "id": "form.quality.high_used",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 124,
+      "context": "span warning",
+      "text_current": "高品質モードは本日分を使用済みです。明日またお試しください。",
+      "matchType": "literal",
+      "search": "高品質モードは本日分を使用済みです。明日またお試しください。"
+    },
+    {
+      "id": "form.personality.label",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 132,
+      "context": "InputField label",
+      "text_current": "性格（カンマ区切り）",
+      "matchType": "literal",
+      "search": "性格（カンマ区切り）"
+    },
+    {
+      "id": "form.personality.placeholder",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 136,
+      "context": "InputField placeholder",
+      "text_current": "例：穏やか, 優雅, 情熱的",
+      "matchType": "literal",
+      "search": "例：穏やか, 優雅, 情熱的"
+    },
+    {
+      "id": "form.outfit.label",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 139,
+      "context": "InputField label",
+      "text_current": "衣装",
+      "matchType": "literal",
+      "search": "label=\"衣装\""
+    },
+    {
+      "id": "form.outfit.placeholder",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 143,
+      "context": "InputField placeholder",
+      "text_current": "精霊の衣装・装い",
+      "matchType": "literal",
+      "search": "精霊の衣装・装い"
+    },
+    {
+      "id": "form.background.label",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 146,
+      "context": "InputField label",
+      "text_current": "背景",
+      "matchType": "literal",
+      "search": "label=\"背景\""
+    },
+    {
+      "id": "form.background.placeholder",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 150,
+      "context": "InputField placeholder",
+      "text_current": "時代背景・シーン",
+      "matchType": "literal",
+      "search": "時代背景・シーン"
+    },
+    {
+      "id": "form.color_tone.label",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 153,
+      "context": "InputField label",
+      "text_current": "色調・光",
+      "matchType": "literal",
+      "search": "label=\"色調・光\""
+    },
+    {
+      "id": "form.color_tone.placeholder",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 157,
+      "context": "InputField placeholder",
+      "text_current": "例：温かく, やさしい",
+      "matchType": "literal",
+      "search": "placeholder=\"例：温かく, やさしい\""
+    },
+    {
+      "id": "form.submit.loading",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 176,
+      "context": "submit button loading",
+      "text_current": "生成中...",
+      "matchType": "literal",
+      "search": "生成中..."
+    },
+    {
+      "id": "form.submit.cooldown",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 179,
+      "context": "submit button cooldown template",
+      "text_current": "${limits.cooldownRemainingSec} 秒後に再生成できます",
+      "matchType": "template",
+      "search": "${limits.cooldownRemainingSec} 秒後に再生成できます"
+    },
+    {
+      "id": "form.submit.default",
+      "category": "form",
+      "file": "src/components/GenerationForm.tsx",
+      "line": 181,
+      "context": "submit button default",
+      "text_current": "花の精霊に変身する",
+      "matchType": "literal",
+      "search": "花の精霊に変身する"
+    },
+    {
+      "id": "preview.loading.main",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 17,
+      "context": "Spinner p",
+      "text_current": "花の精霊が咲いています...",
+      "matchType": "literal",
+      "search": "花の精霊が咲いています..."
+    },
+    {
+      "id": "preview.loading.sub",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 18,
+      "context": "Spinner p sub",
+      "text_current": "30秒ほどお待ちください",
+      "matchType": "literal",
+      "search": "30秒ほどお待ちください"
+    },
+    {
+      "id": "preview.error.title",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 39,
+      "context": "h3 error title",
+      "text_current": "生成に失敗しました",
+      "matchType": "literal",
+      "search": "生成に失敗しました"
+    },
+    {
+      "id": "preview.alt.generated",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 48,
+      "context": "img alt",
+      "text_current": "生成された花の精霊",
+      "matchType": "literal",
+      "search": "alt=\"生成された花の精霊\""
+    },
+    {
+      "id": "preview.empty.title",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 69,
+      "context": "empty state p",
+      "text_current": "ここに生成画像が表示されます",
+      "matchType": "literal",
+      "search": "ここに生成画像が表示されます"
+    },
+    {
+      "id": "preview.empty.sub",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 70,
+      "context": "empty state p sub",
+      "text_current": "花を選んでカスタマイズし、生成ボタンを押してください",
+      "matchType": "literal",
+      "search": "花を選んでカスタマイズし、生成ボタンを押してください"
+    },
+    {
+      "id": "preview.save",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 82,
+      "context": "button save",
+      "text_current": "画像を保存",
+      "matchType": "literal",
+      "search": "画像を保存"
+    },
+    {
+      "id": "preview.reset",
+      "category": "preview",
+      "file": "src/components/ImagePreview.tsx",
+      "line": 89,
+      "context": "button reset",
+      "text_current": "もう一度つくる",
+      "matchType": "literal",
+      "search": "もう一度つくる"
+    },
+    {
+      "id": "uploader.error.process",
+      "category": "uploader",
+      "file": "src/components/ImageUploader.tsx",
+      "line": 32,
+      "context": "setProcessError",
+      "text_current": "画像の処理に失敗しました。別の写真をお試しください。",
+      "matchType": "literal",
+      "search": "画像の処理に失敗しました。別の写真をお試しください。"
+    },
+    {
+      "id": "uploader.alt.preview",
+      "category": "uploader",
+      "file": "src/components/ImageUploader.tsx",
+      "line": 45,
+      "context": "img alt",
+      "text_current": "アップロード画像",
+      "matchType": "literal",
+      "search": "alt=\"アップロード画像\""
+    },
+    {
+      "id": "uploader.remove",
+      "category": "uploader",
+      "file": "src/components/ImageUploader.tsx",
+      "line": 55,
+      "context": "button remove",
+      "text_current": "画像を削除",
+      "matchType": "literal",
+      "search": "画像を削除"
+    },
+    {
+      "id": "uploader.compression.after_upload",
+      "category": "uploader",
+      "file": "src/components/ImageUploader.tsx",
+      "line": 60,
+      "context": "p after upload template",
+      "text_current": "送信時は長辺 {MAX_IMAGE_DIMENSION}px に自動圧縮されます",
+      "matchType": "template",
+      "search": "送信時は長辺 {MAX_IMAGE_DIMENSION}px に自動圧縮されます"
+    },
+    {
+      "id": "uploader.processing",
+      "category": "uploader",
+      "file": "src/components/ImageUploader.tsx",
+      "line": 102,
+      "context": "p processing",
+      "text_current": "画像を圧縮中...",
+      "matchType": "literal",
+      "search": "画像を圧縮中..."
+    },
+    {
+      "id": "uploader.tap_to_select",
+      "category": "uploader",
+      "file": "src/components/ImageUploader.tsx",
+      "line": 107,
+      "context": "p tap",
+      "text_current": "タップして写真を選ぶ",
+      "matchType": "literal",
+      "search": "タップして写真を選ぶ"
+    },
+    {
+      "id": "uploader.compression.before_upload",
+      "category": "uploader",
+      "file": "src/components/ImageUploader.tsx",
+      "line": 110,
+      "context": "p before upload template",
+      "text_current": "自動で長辺 {MAX_IMAGE_DIMENSION}px に圧縮されます",
+      "matchType": "template",
+      "search": "自動で長辺 {MAX_IMAGE_DIMENSION}px に圧縮されます"
+    },
+    {
+      "id": "flowers.label.jp_sakura",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 87,
+      "context": "FLOWER_LABELS",
+      "text_current": "🌸 桜（日本）",
+      "matchType": "literal",
+      "search": "jp_sakura: \"🌸 桜（日本）\""
+    },
+    {
+      "id": "flowers.label.fr_iris",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 88,
+      "context": "FLOWER_LABELS",
+      "text_current": "⚜️ アイリス（フランス）",
+      "matchType": "literal",
+      "search": "fr_iris: \"⚜️ アイリス（フランス）\""
+    },
+    {
+      "id": "flowers.label.es_carnation",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 89,
+      "context": "FLOWER_LABELS",
+      "text_current": "🌹 カーネーション（スペイン）",
+      "matchType": "literal",
+      "search": "es_carnation: \"🌹 カーネーション（スペイン）\""
+    },
+    {
+      "id": "flowers.label.nl_tulip",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 90,
+      "context": "FLOWER_LABELS",
+      "text_current": "🌷 チューリップ（オランダ）",
+      "matchType": "literal",
+      "search": "nl_tulip: \"🌷 チューリップ（オランダ）\""
+    },
+    {
+      "id": "flowers.label.kr_mugunghwa",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 91,
+      "context": "FLOWER_LABELS",
+      "text_current": "🌺 無窮花（韓国）",
+      "matchType": "literal",
+      "search": "kr_mugunghwa: \"🌺 無窮花（韓国）\""
+    },
+    {
+      "id": "flowers.label.us_rose",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 92,
+      "context": "FLOWER_LABELS",
+      "text_current": "🌹 バラ（アメリカ）",
+      "matchType": "literal",
+      "search": "us_rose: \"🌹 バラ（アメリカ）\""
+    },
+    {
+      "id": "flowers.label.it_violet",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 93,
+      "context": "FLOWER_LABELS",
+      "text_current": "💜 スミレ（イタリア）",
+      "matchType": "literal",
+      "search": "it_violet: \"💜 スミレ（イタリア）\""
+    },
+    {
+      "id": "flowers.label.br_ipe",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 94,
+      "context": "FLOWER_LABELS",
+      "text_current": "🌼 イペー（ブラジル）",
+      "matchType": "literal",
+      "search": "br_ipe: \"🌼 イペー（ブラジル）\""
+    },
+    {
+      "id": "flowers.label.gb_tudor_rose",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 95,
+      "context": "FLOWER_LABELS",
+      "text_current": "👑 チューダーローズ（英国）",
+      "matchType": "literal",
+      "search": "gb_tudor_rose: \"👑 チューダーローズ（英国）\""
+    },
+    {
+      "id": "flowers.label.th_ratchaphruek",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 96,
+      "context": "FLOWER_LABELS",
+      "text_current": "🌟 ラチャプルック（タイ）",
+      "matchType": "literal",
+      "search": "th_ratchaphruek: \"🌟 ラチャプルック（タイ）\""
+    },
+    {
+      "id": "flowers.hanakotoba.jp_sakura",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 8,
+      "context": "hanakotoba jp_sakura",
+      "text_current": "優美・精神の美 (Grace, beauty of mind)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"優美・精神の美 (Grace, beauty of mind)\""
+    },
+    {
+      "id": "flowers.hanakotoba.fr_iris",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 16,
+      "context": "hanakotoba fr_iris",
+      "text_current": "高貴・希望 (Noble, hope)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"高貴・希望 (Noble, hope)\""
+    },
+    {
+      "id": "flowers.hanakotoba.es_carnation",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 24,
+      "context": "hanakotoba es_carnation",
+      "text_current": "情熱 (Passion)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"情熱 (Passion)\""
+    },
+    {
+      "id": "flowers.hanakotoba.nl_tulip",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 32,
+      "context": "hanakotoba nl_tulip",
+      "text_current": "誠実・恋の予感 (Sincerity, premonition of love)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"誠実・恋の予感 (Sincerity, premonition of love)\""
+    },
+    {
+      "id": "flowers.hanakotoba.kr_mugunghwa",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 40,
+      "context": "hanakotoba kr_mugunghwa",
+      "text_current": "忍耐・信念 (Perseverance, belief)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"忍耐・信念 (Perseverance, belief)\""
+    },
+    {
+      "id": "flowers.hanakotoba.us_rose",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 48,
+      "context": "hanakotoba us_rose",
+      "text_current": "愛・勇気 (Love, courage)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"愛・勇気 (Love, courage)\""
+    },
+    {
+      "id": "flowers.hanakotoba.it_violet",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 56,
+      "context": "hanakotoba it_violet",
+      "text_current": "謙虚・誠意 (Humility, sincerity)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"謙虚・誠意 (Humility, sincerity)\""
+    },
+    {
+      "id": "flowers.hanakotoba.br_ipe",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 64,
+      "context": "hanakotoba br_ipe",
+      "text_current": "豊かさ・生命力 (Abundance, life force)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"豊かさ・生命力 (Abundance, life force)\""
+    },
+    {
+      "id": "flowers.hanakotoba.gb_tudor_rose",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 72,
+      "context": "hanakotoba gb_tudor_rose",
+      "text_current": "調和・誇り (Harmony, pride)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"調和・誇り (Harmony, pride)\""
+    },
+    {
+      "id": "flowers.hanakotoba.th_ratchaphruek",
+      "category": "flowers",
+      "file": "src/lib/flowers.ts",
+      "line": 80,
+      "context": "hanakotoba th_ratchaphruek",
+      "text_current": "友情・繁栄 (Friendship, prosperity)",
+      "matchType": "literal",
+      "search": "hanakotoba: \"友情・繁栄 (Friendship, prosperity)\""
+    },
+    {
+      "id": "meta.description",
+      "category": "meta",
+      "file": "src/app/layout.tsx",
+      "line": 20,
+      "context": "metadata description",
+      "text_current": "タイムスリップ変身体験アプリ",
+      "matchType": "literal",
+      "search": "description: \"タイムスリップ変身体験アプリ\""
+    },
+    {
+      "id": "error.api.no_api_key",
+      "category": "error",
+      "file": "src/app/api/generate-spirit/route.ts",
+      "line": 46,
+      "context": "API 500",
+      "text_current": "GEMINI_API_KEY が設定されていません",
+      "matchType": "literal",
+      "search": "GEMINI_API_KEY が設定されていません"
+    },
+    {
+      "id": "error.api.missing_flower",
+      "category": "error",
+      "file": "src/app/api/generate-spirit/route.ts",
+      "line": 54,
+      "context": "API 400",
+      "text_current": "flower と country は必須です",
+      "matchType": "literal",
+      "search": "flower と country は必須です"
+    },
+    {
+      "id": "error.api.cooldown",
+      "category": "error",
+      "file": "src/app/api/generate-spirit/route.ts",
+      "line": 64,
+      "context": "API 429 cooldown template",
+      "text_current": "生成は ${cooldown.retryAfter} 秒後に再度お試しください",
+      "matchType": "template",
+      "search": "生成は ${cooldown.retryAfter} 秒後に再度お試しください"
+    },
+    {
+      "id": "error.api.high_quality_limit",
+      "category": "error",
+      "file": "src/app/api/generate-spirit/route.ts",
+      "line": 76,
+      "context": "API 429 high quality",
+      "text_current": "高品質モードは1日1回までです。Standard をお試しください。",
+      "matchType": "literal",
+      "search": "高品質モードは1日1回までです。Standard をお試しください。"
+    },
+    {
+      "id": "error.api.no_image",
+      "category": "error",
+      "file": "src/app/api/generate-spirit/route.ts",
+      "line": 125,
+      "context": "API 502",
+      "text_current": "AIから画像が返されませんでした",
+      "matchType": "literal",
+      "search": "AIから画像が返されませんでした"
+    },
+    {
+      "id": "error.api.generation_failed",
+      "category": "error",
+      "file": "src/app/api/generate-spirit/route.ts",
+      "line": 127,
+      "context": "API catch fallback",
+      "text_current": "画像生成に失敗しました",
+      "matchType": "literal",
+      "search": "画像生成に失敗しました"
+    }
+  ]
+}

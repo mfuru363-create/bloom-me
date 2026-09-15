@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "i18n:export": "tsx scripts/export-ui-strings.ts",
+    "i18n:import": "tsx scripts/import-ui-strings.ts"
   },
   "dependencies": {
     "@google/genai": "^1.52.0",
@@ -22,6 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
     "tailwindcss": "^4",
+    "tsx": "^4.20.3",
     "typescript": "^5"
   }
 }

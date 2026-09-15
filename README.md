@@ -47,10 +47,22 @@ http://localhost:3000
 
 ## デプロイ（Vercel）
 
+**本番**: https://bloom-me.vercel.app
+
 1. GitHub に push（下記）
 2. [vercel.com](https://vercel.com) → Import Repository
-3. Environment Variables: `GEMINI_API_KEY`
-4. Deploy
+3. Environment Variables: `GEMINI_API_KEY`（Production）
+4. Deploy → キー追加・変更後は **Redeploy** 必須
+
+### 本番 API の疎通確認
+
+```bash
+curl -s -X POST "https://bloom-me.vercel.app/api/generate-character" \
+  -H "Content-Type: application/json" \
+  -d '{"flower":{"name":"Rose","country":"UK","description":"x","color":"red"}}'
+```
+
+`GEMINI_API_KEY が設定されていません` → 環境変数 or Redeploy を確認。
 
 ## GitHub（初回）
 

@@ -6,6 +6,7 @@ export type ChatMessage = {
 };
 
 export type HomeEnterPayload = {
-  userName: string;
   gender: AppTheme;
+  /** 将来用。今回のUIでは未使用 */
+  userName?: string;
 };
